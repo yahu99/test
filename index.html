@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Угадай число</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        h1 { font-size: 24px; }
+        input, button { font-size: 18px; padding: 5px 10px; margin: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Угадай число от 1 до 10</h1>
+    <p id="message">Я загадал число. Попробуй угадать!</p>
+    <input type="number" id="guessInput" min="1" max="10" placeholder="Введите число">
+    <button onclick="checkGuess()">Угадать</button>
+
+    <script>
+        // Генерируем случайное число от 1 до 10
+        const targetNumber = Math.floor(Math.random() * 10) + 1;
+        
+        function checkGuess() {
+            const guess = parseInt(document.getElementById("guessInput").value);
+            const message = document.getElementById("message");
+
+            if (isNaN(guess) || guess < 1 || guess > 10) {
+                message.textContent = "Пожалуйста, введите число от 1 до 10.";
+                return;
+            }
+
+            if (guess === targetNumber) {
+                message.textContent = "Поздравляю! Ты угадал число!";
+            } else if (guess < targetNumber) {
+                message.textContent = "Мое число больше.";
+                alert('Мое число больше.');
+            } else {
+                message.textContent = "Мое число меньше.";
+                alert('Мое число меньше.');
+
+            }
+        }
+    </script>
+</body>
+</html>
